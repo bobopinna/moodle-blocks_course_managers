@@ -1,0 +1,56 @@
+.block-course_managers {
+   white-space: nowrap;
+}
+
+.block-course_managers-page {
+   margin: 0;
+}
+
+.block-course_managers-page div.link {
+   background: url([[pix:moodle|i/user]]) no-repeat 0% 0%;
+   padding-left: 18px;
+   padding-top: 0.1em;
+}
+
+.block-course_managers-page li {
+   list-style: none;
+   margin-bottom: 0.2em;
+}
+
+#block-course_managers-pages {
+   margin-top: 5px;
+}
+
+.block-course_managers-page-numbers, .block-course_managers-page-arrow {
+   padding: 3px;
+   margin-left: 3px;
+   border: thin solid black;
+}
+
+#page-blocks-course_managers-manager table.orario_timetable {
+   border-collapse:collapse;
+   width: 100%;
+}
+
+#page-blocks-course_managers-manager table.orario_timetable tr,
+#page-blocks-course_managers-manager table.orario_timetable td,
+#page-blocks-course_managers-manager table.orario_timetable th,
+#page-blocks-course_managers-manager table.orario_timetable {
+   border: thin solid black;
+   text-align: center;
+}
+
+#page-blocks-course_managers-manager .notopened {
+  background-color: #bf2f32;
+  color: white;
+  padding: 2px;
+}
+
+#page-blocks-course_managers-manager .filler {
+  border-top: thin solid black;
+  height: 0.5em;
+  width: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.3em;
+}
