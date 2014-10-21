@@ -4,6 +4,7 @@
    $string['configtitle'] = 'Title';
    $string['configitemperpage'] = 'Managers per page';
 
+   $string['nocoursecontact'] = 'No course contacts role defined';
    $string['youcantsee'] = 'Personal course listing disabled';
    $string['timetable'] = 'Timetable';
    $string['timetableurl_config'] = 'Timetable site URL';
