@@ -37,6 +37,10 @@ class block_course_managers_edit_form extends block_edit_form {
         $choices[3] = '3';
         $choices[4] = '4';
         $choices[5] = '5';
+        $choices[6] = '6';
+        $choices[7] = '7';
+        $choices[8] = '8';
+        $choices[9] = '9';
         $choices[10] = '10';
         $choices[15] = '15';
         $choices[20] = '20';
@@ -47,6 +51,17 @@ class block_course_managers_edit_form extends block_edit_form {
             $mform->setDefault('config_itemperpage', $this->block->config->itemperpage);
         } else {
             $mform->setDefault('config_itemperpage', '10');
+        }
+
+        $choices = array();
+        $choices['search'] = get_string('searchbox', 'block_course_managers');
+        $choices['pages'] = get_string('pages', 'block_course_managers');
+        $choices['letters'] = get_string('letters', 'block_course_managers');
+        $mform->addElement('select', 'config_multipage', get_string('configmultipage', 'block_course_managers'), $choices);
+        if (isset($this->block->config->multipage)) {
+            $mform->setDefault('config_multipage', $this->block->config->multipage);
+        } else {
+            $mform->setDefault('config_multipage', 'search');
         }
 
     }

@@ -56,31 +56,69 @@
                          ORDER BY u.lastname, u.firstname";
                 
                 if ($managers = $DB->get_records_sql($sql)) {
-                    $page = 1;
-                    $this->content->text = '<ul id="block-course_managers-page-'.$page.'" class="block-course_managers-page">';
-                    $this->content->footer = NULL;
-                    $i = 0;
-    
                     $itemperpage = 10;
                     if (isset($this->config->itemperpage) && !empty($this->config->itemperpage)) {
                         $itemperpage = $this->config->itemperpage;
                     }
+    
+                    $managersdata = '  var managers = Array();'."\n".
+                                    '  managers[\'itemperpage\'] = '.$itemperpage.";\n".
+                                    '  managers[\'elements\'] = '.count($managers).";\n".
+                                    '  managers[\'users\'] = Array()'.";\n"; 
+
+                    $managerslist = html_writer::start_tag('ul', array('class' => 'block-course_managers-page'));
+                    $i = 1;
                     foreach($managers as $manager) {
-                        if (($itemperpage > 0) && ($i > 0) && (($i % $itemperpage) == 0) && ($i < count($managers))) {
-                            $this->content->text .= '</ul>';
-                            $page++;
-                            $this->content->text .= '<ul id="block-course_managers-page-'.$page.'" class="block-course_managers-page">';
-                        }
-                        $link = new moodle_url($CFG->wwwroot . '/blocks/course_managers/manager.php', array('id' => $manager->id, 'b' => $this->instance->id));
-                        $this->content->text .= '<li><div class="link"><a href="'.$link.'">'.$manager->lastname.' '.$manager->firstname.'</a></div></li>';
+                        $linkurl = new moodle_url($CFG->wwwroot . '/blocks/course_managers/manager.php', array('id' => $manager->id, 'b' => $this->instance->id));
+                        
+                        $managersdata .= '    managers[\'users\']['.$i.'] = Array();'."\n";
+                        $managersdata .= '    managers[\'users\']['.$i.'][\'fullname\'] = \''.htmlentities($manager->lastname.' '.$manager->firstname, ENT_QUOTES).'\';'."\n";
+                        $managersdata .= '    managers[\'users\']['.$i.'][\'link\'] = \''.$linkurl.'\';'."\n";
+                        $link = html_writer::tag('a', $manager->lastname.' '.$manager->firstname, array('href' => $linkurl));
+                        $linkdiv = html_writer::tag('div', $link, array('class' => 'link'));
+                        $managerslist .= html_writer::tag('li', $linkdiv, array())."\n";
                         $i++;
                     }
-                    $this->content->text .= '</ul>';
-                    if ($page > 1) {
-                        $this->content->footer = '<div id="block-course_managers-pages" style="text-align:center;"></div>';
-                        $this->content->footer .= '<script type="text/javascript" src="'.$CFG->wwwroot.'/blocks/course_managers/pages.js"></script>';
-                        //$this->content->footer .= '<script type="text/javascript">'."\n".'//<![CDATA['."\n".'showPage(1,'.$page.');'."\n".'//]]>'."\n".'</script>';
-                        $this->content->footer .= '<script type="text/javascript">'."\n".'<!--'."\n".'showPage(1,'.$page.');'."\n".'-->'."\n".'</script>';
+                    $managerslist .= html_writer::end_tag('ul')."\n";
+                    $maxheight = $itemperpage * 1.85;
+                    $attributes = array();
+                    $attributes['id'] = 'block-course_managers-list';
+                    $attributes['style'] = 'overflow-y: scroll; max-height: '.$maxheight.'em;';
+                    $this->content->text = html_writer::tag('div', $managerslist, $attributes)."\n";
+                    if (count($managers)/$itemperpage > 1) {
+                        $multipage = '';
+                        if (isset($this->config->multipage) && !empty($this->config->multipage)) {
+                            $multipage = $this->config->multipage;
+                        }
+
+                        $this->content->text .= '<script type="text/javascript">'."\n".'<!--'."\n".$managersdata."\n".'-->'."\n".'</script>';
+                        $this->content->text .= '<script type="text/javascript" src="'.$CFG->wwwroot.'/blocks/course_managers/pages.js"></script>';
+                        switch ($multipage) {
+                            case 'letters': 
+                               $attributes = array();
+                               $attributes['id'] = 'block-course_managers-letters';
+                               $this->content->text  = html_writer::tag('div', '', $attributes)."\n".$this->content->text;
+                               $this->content->text .= '<script type="text/javascript">'."\n".'<!--'."\n".'generateLetters("", managers);'."\n".'-->'."\n".'</script>';
+                            break;
+                            case 'pages': 
+                               $attributes = array();
+                               $attributes['id'] = 'block-course_managers-pages';
+                               $this->content->text  = html_writer::tag('div', '', $attributes)."\n".$this->content->text;
+                               $this->content->text .= '<script type="text/javascript">'."\n".'<!--'."\n".'showPage(1, managers);'."\n".'-->'."\n".'</script>';
+                            break;
+                            default:
+                               $attributes = array();
+                               $attributes['id'] = 'block-course_managers-search-filter';
+                               $attributes['type'] = 'text';
+                               $attributes['onKeyUp'] = 'showResults(this.value, managers);';
+                               $attributes['placeholder'] = get_string('typetofilter', 'block_course_managers');
+                               $filterfield = html_writer::empty_tag('input', $attributes);
+                               $attributes = array();
+                               $attributes['id'] = 'block-course_managers-search';
+                               $this->content->text  = html_writer::tag('div', $filterfield, $attributes)."\n".$this->content->text;
+                               $this->content->text .= '<script type="text/javascript">'."\n".'<!--'."\n".'document.getElementById("block-course_managers-search").style.display="block";'."\n".'-->'."\n".'</script>';
+                            break;
+                        }
                     }
                 }
             } else {
