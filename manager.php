@@ -266,7 +266,7 @@
                 $link = html_writer::tag('a', $reservation->name, array('href' => $reservationurl, 'class' => $dimmed));
 
                 $row = array();
-                $context = get_context_instance(CONTEXT_MODULE, $mod->id);
+                $context = context_module::instance($mod->id);
                 if ((has_capability('mod/reservation:viewrequest',$context)) || (empty($dimmed))) {
                     $row = array ($link, $eventdate, $place, $description, $timeopen, $timeclose);
                     if (has_capability('mod/reservation:viewrequest',$context)) {
