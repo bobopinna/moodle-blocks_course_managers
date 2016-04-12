@@ -41,6 +41,10 @@
             $this->content =  new stdClass;
 
             if (isset($CFG->coursecontact) && !empty($CFG->coursecontact)) {          
+                $order = 'u.lastname ASC, u.firstname ASC';
+                if (isset($this->config->orderbyaccess) && !empty($this->config->orderbyaccess)) {
+                    $order = 'u.lastaccess DESC, '. $order;
+                }
                 $sql = "SELECT u.id, u.firstname, u.lastname 
                           FROM {$CFG->prefix}role_assignments ra,
                                {$CFG->prefix}course c,
@@ -53,7 +57,7 @@
                            AND c.id = ctx.instanceid
                            AND c.visible = 1
                          GROUP BY u.id
-                         ORDER BY u.lastname, u.firstname";
+                         ORDER BY $order";
                 
                 if ($managers = $DB->get_records_sql($sql)) {
                     $itemperpage = 10;

@@ -64,6 +64,13 @@ class block_course_managers_edit_form extends block_edit_form {
             $mform->setDefault('config_multipage', 'search');
         }
 
+        $mform->addElement('checkbox', 'config_orderbyaccess', get_string('configorderbyaccess', 'block_course_managers'));
+        if (isset($this->block->config->orderbyaccess)) {
+            $mform->setDefault('config_orderbyaccess', $this->block->config->orderbyaccess);
+        } else {
+            $mform->setDefault('config_orderbyaccess', false);
+        }
+        $mform->disabledIf('config_orderbyaccess', 'config_multipage', 'eq', 'letters');
     }
 
     function set_data($defaults) {

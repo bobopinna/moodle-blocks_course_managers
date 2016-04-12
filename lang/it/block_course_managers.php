@@ -4,6 +4,7 @@
    $string['configtitle'] = 'Titolo';
    $string['configitemperpage'] = 'Gestori per pagina';
    $string['configmultipage'] = 'Organizza pagine per ';
+   $string['configorderbyaccess'] = 'Ordina i gestori per data di ultimo accesso';
 
    $string['youcantsee'] = 'Visualizzazione elechi corsi personali disabiltato';
    $string['nocoursecontact'] = 'Non ci sono ruoli indicati come gestori dei corsi';

@@ -4,6 +4,7 @@
    $string['configtitle'] = 'Title';
    $string['configitemperpage'] = 'Managers per page';
    $string['configmultipage'] = 'Organize pages by';
+   $string['configorderbyaccess'] = 'Order managers by last access time';
 
    $string['nocoursecontact'] = 'No course contacts role defined';
    $string['youcantsee'] = 'Personal course listing disabled';
