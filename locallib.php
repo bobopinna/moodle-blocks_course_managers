@@ -18,6 +18,7 @@
                   AND course.visible = 1
                   AND categories.id = course.category
                   AND ra.userid = {$userid}
+                GROUP BY course.id
                 ORDER BY categories.sortorder ASC, course.fullname ASC";
 
        return $DB->get_records_sql($sql);
