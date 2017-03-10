@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,6 +13,16 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * This file keeps track of upgrades to the course managers block
+ *
+ * @package block_course_managers
+ * @copyright 2010 Roberto Pinna {roberto.pinna@uniupo.it}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die();
 
 /**
  * Form for editing Course Managers block instances.
@@ -73,10 +82,10 @@ class block_course_managers_edit_form extends block_edit_form {
         $mform->disabledIf('config_orderbyaccess', 'config_multipage', 'eq', 'letters');
     }
 
-    function set_data($defaults) {
+    protected function set_data($defaults) {
 
         if (!$this->block->user_can_edit() && !empty($this->block->config->title)) {
-            // If a title has been set but the user cannot edit it format it nicely
+            // If a title has been set but the user cannot edit it format it nicely.
             $title = $this->block->config->title;
             $defaults->config_title = format_string($title, true, $this->page->context);
             // Remove the title from the config so that parent::set_data doesn't set it.
@@ -89,7 +98,7 @@ class block_course_managers_edit_form extends block_edit_form {
             $this->block->config = new stdClass();
         }
         if (isset($title)) {
-            // Reset the preserved title
+            // Reset the preserved title.
             $this->block->config->title = $title;
         }
     }

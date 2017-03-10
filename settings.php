@@ -18,15 +18,16 @@
  * Settings for the Course Managers block.
  *
  * @package   block_course_managers
- * @copyright 2014 Roberto Pinna 
+ * @copyright 2014 Roberto Pinna
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
+    $strtimetableurl = get_string('timetableurl_config', 'block_course_managers');
+    $strtimetableurldesc = get_string('timetableurl_config_desc', 'block_course_managers');
 
-    $settings->add(new admin_setting_configtext('block_course_managers_timetableurl', get_string('timetableurl_config','block_course_managers'), get_string('timetableurl_config_desc','block_course_managers'), '')); 
-
+    $settings->add(new admin_setting_configtext('block_course_managers_timetableurl', $strtimetableurl, $strtimetableurldesc, ''));
 }
 

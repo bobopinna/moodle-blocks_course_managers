@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * @package   block_course_managers
+ * @copyright 2014 Roberto Pinna
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die;
+
 $plugin->version   = 2013011703;
-$plugin->requires  = 2010112400;        // Requires this Moodle version
-$plugin->component = 'block_course_managers'; // Full name of the plugin (used for diagnostics)
+$plugin->requires  = 2010112400;        // Requires this Moodle version.
+$plugin->component = 'block_course_managers'; // Full name of the plugin (used for diagnostics).

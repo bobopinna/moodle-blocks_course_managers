@@ -1,19 +1,40 @@
 <?php
-   $string['pluginname'] = 'Course managers'; 
-   $string['coursemanagers'] = 'Course Managers'; 
-   $string['configtitle'] = 'Title';
-   $string['configitemperpage'] = 'Managers per page';
-   $string['configmultipage'] = 'Organize pages by';
-   $string['configorderbyaccess'] = 'Order managers by last access time';
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-   $string['nocoursecontact'] = 'No course contacts role defined';
-   $string['youcantsee'] = 'Personal course listing disabled';
-   $string['timetable'] = 'Timetable';
-   $string['timetableurl_config'] = 'Timetable site URL';
-   $string['timetableurl_config_desc'] = 'Define here the teachers timetable page URL. The page must contains teachers list with links to teachers timetable';
-   $string['typetofilter'] = 'Type to search';
-   $string['searchbox'] = 'none, use a searchbox';
-   $string['pages'] = 'page numbers';
-   $string['letters'] = 'alphabetic letters';
-     
-?>
+/**
+ * This file keeps track of upgrades to the course managers block
+ *
+ * @package block_course_managers
+ * @copyright 2010 Roberto Pinna {roberto.pinna@uniupo.it}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+$string['pluginname'] = 'Course managers';
+$string['coursemanagers'] = 'Course Managers';
+$string['configtitle'] = 'Title';
+$string['configitemperpage'] = 'Managers per page';
+$string['configmultipage'] = 'Organize pages by';
+$string['configorderbyaccess'] = 'Order managers by last access time';
+
+$string['nocoursecontact'] = 'No course contacts role defined';
+$string['youcantsee'] = 'Personal course listing disabled';
+$string['timetable'] = 'Timetable';
+$string['timetableurl_config'] = 'Timetable site URL';
+$string['timetableurl_config_desc'] = 'Define here the teachers timetable page URL. The page must contains teachers list with links to teachers timetable';
+$string['typetofilter'] = 'Type to search';
+$string['searchbox'] = 'none, use a searchbox';
+$string['pages'] = 'page numbers';
+$string['letters'] = 'alphabetic letters';
