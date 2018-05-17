@@ -335,7 +335,7 @@ if ($managercourses = course_managers_get_courses($user->id)) {
                 }
                 if ($managercourse->category > 0) {
                     $managercourse->summary .= '<br /><p class="category">';
-                    $url = new moodle_url('/course/category.php', array ('id' => $managercourse->category));
+                    $url = new moodle_url('/course/index.php', array ('categoryid' => $managercourse->category));
                     $managercourse->summary .= $strcategory.' <a href="'.$url.'">';
                     $managercourse->summary .= $displaylist[$managercourse->category];
                     $managercourse->summary .= '</a></p>';
