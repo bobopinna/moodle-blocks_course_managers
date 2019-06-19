@@ -26,7 +26,6 @@ require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->dirroot . '/tag/lib.php');
 require_once($CFG->dirroot . '/user/profile/lib.php');
-require_once($CFG->libdir . '/coursecatlib.php');
 require_once(__DIR__ . '/locallib.php');
 
 $userid = required_param('id', PARAM_INT);
@@ -41,7 +40,7 @@ if (! $course = $DB->get_record('course', array('id' => SITEID)) ) {
 }
 
 if ($managercourses = course_managers_get_courses($user->id)) {
-    $displaylist = coursecat::make_categories_list();
+    $displaylist = core_course_category::make_categories_list();
 
     $strcategory = new lang_string("category");
     $strpersonalprofile = get_string('personalprofile');
@@ -204,7 +203,7 @@ if ($managercourses = course_managers_get_courses($user->id)) {
 
     // Printing tagged interests.
     if (!empty($CFG->usetags)) {
-        if ($interests = tag_get_tags_csv('user', $user->id) ) {
+        if ($interests = core_tag_tag::get_item_tags('core', 'user', $user->id)) {
              print_row(get_string('interests') .": ", $interests);
         }
     }
