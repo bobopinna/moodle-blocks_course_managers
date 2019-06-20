@@ -23,6 +23,8 @@
  */
 
 $string['pluginname'] = 'Course managers';
+$string['course_managers:addinstance'] = 'Add a Course Managers block';
+
 $string['coursemanagers'] = 'Course Managers';
 $string['configtitle'] = 'Title';
 $string['configitemperpage'] = 'Managers per page';
