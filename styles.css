@@ -7,14 +7,6 @@
    margin: 0;
 }
 
-.block-course_managers-letter div.link,
-.block-course_managers-page div.link {
-   background: url([[pix:moodle|i/user]]) no-repeat 0% 0%;
-   padding-left: 20px;
-   padding-top: 0.1em;
-   text-align: left;
-}
-
 .block-course_managers-letter li,
 .block-course_managers-page li {
    list-style: none;

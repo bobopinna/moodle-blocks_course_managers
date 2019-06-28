@@ -94,15 +94,17 @@ class block_course_managers extends block_base {
 
                 $managerslist = html_writer::start_tag('ul', array('class' => 'block-course_managers-page'));
                 $i = 1;
+
+                $icon = $OUTPUT->pix_icon('i/user', get_string('user'));
                 foreach ($managers as $manager) {
                     $query = array('id' => $manager->id, 'b' => $this->instance->id);
                     $linkurl = new moodle_url($CFG->wwwroot . '/blocks/course_managers/manager.php', $query);
 
                     $managersdata .= '    managers[\'users\']['.$i.'] = Array();'."\n";
                     $fullname = htmlentities($manager->lastname.' '.$manager->firstname, ENT_QUOTES);
-                    $managersdata .= '    managers[\'users\']['.$i.'][\'fullname\'] = \''. $fullname .'\';'."\n";
+                    $managersdata .= '    managers[\'users\']['.$i.'][\'fullname\'] = \''. $icon.$fullname .'\';'."\n";
                     $managersdata .= '    managers[\'users\']['.$i.'][\'link\'] = \''.$linkurl.'\';'."\n";
-                    $link = html_writer::tag('a', $manager->lastname.' '.$manager->firstname, array('href' => $linkurl));
+                    $link = html_writer::tag('a', $icon.$manager->lastname.' '.$manager->firstname, array('href' => $linkurl));
                     $linkdiv = html_writer::tag('div', $link, array('class' => 'link'));
                     $managerslist .= html_writer::tag('li', $linkdiv, array())."\n";
                     $i++;
