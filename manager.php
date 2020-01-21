@@ -40,7 +40,13 @@ if (! $course = $DB->get_record('course', array('id' => SITEID)) ) {
 }
 
 if ($managercourses = course_managers_get_courses($user->id)) {
-    $displaylist = core_course_category::make_categories_list();
+    $displaylist = null;
+    if (class_exists('core_course_category')) {
+        $displaylist = core_course_category::make_categories_list();
+    } else {
+        require_once($CFG->libdir. '/coursecatlib.php');
+        $displaylist = coursecat::make_categories_list();
+    }
 
     $strcategory = new lang_string("category");
     $strpersonalprofile = get_string('personalprofile');
