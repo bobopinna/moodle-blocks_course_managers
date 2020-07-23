@@ -35,7 +35,7 @@ function xmldb_block_course_managers_upgrade($oldversion) {
 
     if ($oldversion < 2020072300) {
         if ($timetableconfig = $DB->get_record('config', array('name' => 'block_course_managers_timetableurl'))) {
-            $DB->delete_record('config', array('id', $timetableconfig->id));
+            $DB->delete_records('config', array('id' => $timetableconfig->id));
         }
         upgrade_block_savepoint(true, 2020072300, 'course_managers', false);
     }
