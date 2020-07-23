@@ -37,20 +37,6 @@
    width: 1em;
 }
 
-
-#page-blocks-course_managers-manager table.orario_timetable {
-   border-collapse:collapse;
-   width: 100%;
-}
-
-#page-blocks-course_managers-manager table.orario_timetable tr,
-#page-blocks-course_managers-manager table.orario_timetable td,
-#page-blocks-course_managers-manager table.orario_timetable th,
-#page-blocks-course_managers-manager table.orario_timetable {
-   border: thin solid black;
-   text-align: center;
-}
-
 #page-blocks-course_managers-manager .notopened {
   background-color: #bf2f32;
   color: white;

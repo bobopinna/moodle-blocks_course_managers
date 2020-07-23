@@ -45,45 +45,6 @@ function course_managers_get_courses($userid) {
     return $DB->get_records_sql($sql);
 }
 
-function course_managers_get_timetable($user) {
-    global $CFG;
-
-    $timetable = '';
-
-    $request = curl_init();
-    $baseurl = $CFG->block_course_managers_timetableurl;
-    curl_setopt($request, CURLOPT_URL, $baseurl);
-    curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
-
-    $html = curl_exec($request);
-    if (!curl_errno($request)) {
-        if (($end = strpos($html, $user->lastname.' '.$user->firstname)) !== false) {
-            $end = $end - 2;
-            $starttag = 'href="';
-            if (($start = strrpos(substr($html, 0, $end), $starttag)) !== false) {
-                $start = $start + strlen($starttag);
-                $baseurl = dirname($baseurl).'/'.substr($html, $start, $endi - $start);
-                curl_setopt($request, CURLOPT_URL, $baseurl);
-
-                $html = curl_exec($request);
-                if (!curl_errno($request)) {
-                    if (($start = strpos($html, '<table class="orario_timetable">')) !== false) {
-                        $endtag = '</table>';
-                        if (($end = strpos($html, $endtag, $start)) !== false) {
-                            $end = $end + strlen($endtag);
-                            $baseurl = dirname($baseurl);
-                            $timetable = str_replace('href="', 'href="'.$baseurl.'/', substr($html, $start, $end - $start));
-                        }
-                    }
-                }
-            }
-        }
-    }
-    curl_close($request);
-
-    return $timetable;
-}
-
 function course_managers_get_reservations($userid) {
     global $DB, $CFG;
 

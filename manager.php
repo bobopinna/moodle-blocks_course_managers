@@ -220,17 +220,6 @@ if ($managercourses = course_managers_get_courses($user->id)) {
     echo '</div>'; // Description Box.
     echo '</div>'; // Description Box.
 
-    if (isset($CFG->block_course_managers_timetableurl) && !empty($CFG->block_course_managers_timetableurl)) {
-        // Print Timetable.
-        $timetable = course_managers_get_timetable($user);
-        if (!empty($timetable)) {
-            echo $OUTPUT->box_start('timetable');
-            echo $OUTPUT->heading(get_string('timetable', 'block_course_managers'));
-            echo $timetable;
-            echo $OUTPUT->box_end();
-        }
-    }
-
     // Print Reservations.
     $reservations = course_managers_get_reservations($user->id);
 

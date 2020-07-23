@@ -33,10 +33,8 @@ $string['configorderbyaccess'] = 'Order managers by last access time';
 
 $string['nocoursecontact'] = 'No course contacts role defined';
 $string['youcantsee'] = 'Personal course listing disabled';
-$string['timetable'] = 'Timetable';
-$string['timetableurl_config'] = 'Timetable site URL';
-$string['timetableurl_config_desc'] = 'Define here the teachers timetable page URL. The page must contains teachers list with links to teachers timetable';
 $string['typetofilter'] = 'Type to search';
 $string['searchbox'] = 'none, use a searchbox';
 $string['pages'] = 'page numbers';
 $string['letters'] = 'alphabetic letters';
+$string['privacy:metadata'] = 'The Course Managers block only shows data about manager\'s courses and does not store any data itself.';
