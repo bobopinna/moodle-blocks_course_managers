@@ -25,7 +25,7 @@
 function course_managers_get_courses($userid) {
     global $CFG, $DB;
 
-    $sql = "SELECT course.*
+    $sql = "SELECT course.*, categories.sortorder
               FROM {$CFG->prefix}course course,
                    {$CFG->prefix}course_categories categories,
                    {$CFG->prefix}context context,
@@ -44,11 +44,12 @@ function course_managers_get_courses($userid) {
 }
 
 function course_managers_get_reservations($userid, $deltatime=-1) {
-    global $DB, $CFG;
+    global $DB;
 
     if ($deltatime < 0) {
-        if (isset($CFG->reservation_deltatime) && ($CFG->reservation_deltatime >= 0)) {
-            $deltatime = $CFG->reservation_deltatime;
+        $configdeltatime = get_config('reservation', 'deltatime');
+        if ($configdeltatime >= 0) {
+            $deltatime = $configdeltatime;
         }
     }
 
@@ -58,7 +59,7 @@ function course_managers_get_reservations($userid, $deltatime=-1) {
 
         if ($deltatime >= 0) {
             $query .= 'AND timestart > :now';
-            $values['now'] = time() - $CFG->reservation_deltatime;
+            $values['now'] = time() - $deltatime;
         }
 
         return $DB->get_records_select('reservation', $query, $values, 'timestart');
