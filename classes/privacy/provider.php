@@ -24,8 +24,6 @@
 
 namespace block_course_managers\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy Subsystem for block_course_managers implementing null_provider.
  *

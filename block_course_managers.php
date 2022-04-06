@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * @package blocks
  * @subpackage course_managers
@@ -26,7 +24,7 @@ defined('MOODLE_INTERNAL') || die();
 class block_course_managers extends block_base {
 
     public function init() {
-        $this->title   = get_string('coursemanagers', 'block_course_managers');
+        $this->title = get_string('coursemanagers', 'block_course_managers');
     }
 
     public function has_config() {
@@ -45,7 +43,7 @@ class block_course_managers extends block_base {
         if (isset($this->config->title) && !empty($this->config->title)) {
             $this->title = $this->config->title;
         } else {
-            $this->title   = get_string('coursemanagers', 'block_course_managers');
+            $this->title = get_string('coursemanagers', 'block_course_managers');
         }
     }
 
@@ -160,12 +158,10 @@ class block_course_managers extends block_base {
         } else {
             $this->content->text = get_string('nocoursecontact', 'block_course_managers');
         }
-
         return $this->content;
     }
 
     public function get_aria_role() {
         return 'navigation';
     }
-
 }

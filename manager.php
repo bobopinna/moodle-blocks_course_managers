@@ -167,7 +167,7 @@ if ($managercourses = course_managers_get_courses($user->id)) {
         print_row(get_string("email").":", obfuscate_mailto($user->email, ''));
     }
 
-    if ($user->url && !isset($hiddenfields['webpage'])) {
+    if (isset($user->url) && !empty($user->url) && !isset($hiddenfields['webpage'])) {
         $url = $user->url;
         if (strpos($user->url, '://') === false) {
             $url = 'http://'. $url;
@@ -175,13 +175,13 @@ if ($managercourses = course_managers_get_courses($user->id)) {
         print_row(get_string("webpage") .":", '<a href="'.s($url).'">'.s($user->url).'</a>');
     }
 
-    if ($user->icq && !isset($hiddenfields['icqnumber'])) {
+    if (isset($user->icq) && !empty($user->icq) && !isset($hiddenfields['icqnumber'])) {
         print_row(get_string('icqnumber').':', "<a href=\"http://web.icq.com/wwp?uin=".urlencode($user->icq)."\">".
                 s($user->icq)." <img src=\"http://web.icq.com/whitepages/online?icq=".urlencode($user->icq).
                 "&amp;img=5\" alt=\"\" /></a>");
     }
 
-    if ($user->skype && !isset($hiddenfields['skypeid'])) {
+    if (isset($user->skype) && !empty($user->skype) && !isset($hiddenfields['skypeid'])) {
         if (strpos($CFG->httpswwwroot, 'https:') === 0) {
             // Bad luck, skype devs are lazy to set up SSL on their servers - see MDL-37233.
             $statusicon = '';
@@ -192,15 +192,15 @@ if ($managercourses = course_managers_get_courses($user->id)) {
         print_row(get_string('skypeid').':', '<a href="skype:'.urlencode($user->skype).'?call">'.
                 s($user->skype).$statusicon.'</a>');
     }
-    if ($user->yahoo && !isset($hiddenfields['yahooid'])) {
+    if (isset($user->yahoo) && !empty($user->yahoo) && !isset($hiddenfields['yahooid'])) {
         print_row(get_string('yahooid').':',
                 '<a href="http://edit.yahoo.com/config/send_webmesg?.target='.urlencode($user->yahoo).'&amp;.src=pg">'.
                 s($user->yahoo).' <img src="http://opi.yahoo.com/online?u='.urlencode($user->yahoo).'&m=g&t=0" alt=""></a>');
     }
-    if ($user->aim && !isset($hiddenfields['aimid'])) {
+    if (isset($user->aim) && !empty($user->aim) && !isset($hiddenfields['aimid'])) {
         print_row(get_string('aimid').':', '<a href="aim:goim?screenname='.urlencode($user->aim).'">'.s($user->aim).'</a>');
     }
-    if ($user->msn && !isset($hiddenfields['msnid'])) {
+    if (isset($user->msn) && !empty($user->msn) && !isset($hiddenfields['msnid'])) {
         print_row(get_string('msnid').':', s($user->msn));
     }
 
