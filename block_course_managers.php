@@ -13,14 +13,22 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * @package blocks
- * @subpackage course_managers
- * @author Roberto Pinna (roberto.pinna@uniupo.it)
+ * Display useful information about courses teacher
+ *
+ * @package block_course_managers
+ * @copyright Roberto Pinna (roberto.pinna@uniupo.it)
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
+/**
+ * Extend base block to provide the list of courses teachers
+ *
+ * @package block_course_managers
+ * @copyright Roberto Pinna (roberto.pinna@uniupo.it)
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_course_managers extends block_base {
 
     public function init() {

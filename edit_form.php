@@ -80,7 +80,7 @@ class block_course_managers_edit_form extends block_edit_form {
         $mform->disabledIf('config_orderbyaccess', 'config_multipage', 'eq', 'letters');
     }
 
-    protected function set_data($defaults) {
+    public function set_data($defaults) {
 
         if (!$this->block->user_can_edit() && !empty($this->block->config->title)) {
             // If a title has been set but the user cannot edit it format it nicely.

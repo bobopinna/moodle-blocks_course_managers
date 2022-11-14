@@ -183,7 +183,7 @@ function print_profile_custom_fields($userid) {
                     require_once($CFG->dirroot.'/user/profile/field/'.$field->datatype.'/field.class.php');
                     $newfield = 'profile_field_'.$field->datatype;
                     $formfield = new $newfield($field->id, $userid);
-                    if ($formfield->is_visible() and !$formfield->is_empty()) {
+                    if ($formfield->is_visible() && !$formfield->is_empty()) {
                         print_row(format_string($formfield->field->name).':', $formfield->display_data());
                     }
                 }

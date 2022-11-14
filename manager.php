@@ -160,10 +160,9 @@ if ($managercourses = course_managers_get_courses($user->id)) {
         print_row(get_string("idnumber").":", "$user->idnumber");
     }
 
-    if (isset($identityfields['email']) and ($currentuser
-      or $user->maildisplay == 1
-      or has_capability('moodle/course:useremail', $context)
-      or ($user->maildisplay == 2 and enrol_sharing_course($user, $USER)))) {
+    if (isset($identityfields['email']) && ($currentuser || $user->maildisplay == 1
+      || has_capability('moodle/course:useremail', $context)
+      || ($user->maildisplay == 2 && enrol_sharing_course($user, $USER)))) {
         print_row(get_string("email").":", obfuscate_mailto($user->email, ''));
     }
 

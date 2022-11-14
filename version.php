@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Display useful information about courses teacher 
+ * 
  * @package   block_course_managers
  * @copyright 2014 Roberto Pinna
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
