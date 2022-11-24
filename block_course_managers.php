@@ -36,7 +36,7 @@ class block_course_managers extends block_base {
     }
 
     public function has_config() {
-        return true;
+        return false;
     }
 
     public function instance_allow_multiple() {
