@@ -38,3 +38,4 @@ $string['searchbox'] = 'none, use a searchbox';
 $string['pages'] = 'page numbers';
 $string['letters'] = 'alphabetic letters';
 $string['privacy:metadata'] = 'The Course Managers block only shows data about manager\'s courses and does not store any data itself.';
+$string['invalidmanagerid'] = 'Invalid manager ID';

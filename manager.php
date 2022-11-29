@@ -32,11 +32,11 @@ $userid = required_param('id', PARAM_INT);
 $blockid = optional_param('b', 0, PARAM_INT);
 
 if (! $user = $DB->get_record('user', array('id' => $userid)) ) {
-    error("No such user in this course");
+    throw new moodle_exception('invaliduserid', 'error');
 }
 
 if (! $course = $DB->get_record('course', array('id' => SITEID)) ) {
-    error("No such course id");
+    throw new moodle_exception('invalidcourseid', 'error');
 }
 
 if ($managercourses = course_managers_get_courses($user->id)) {
@@ -251,5 +251,5 @@ if ($managercourses = course_managers_get_courses($user->id)) {
 
     echo $OUTPUT->footer();
 } else {
-    error('Bad script call');
+    throw new moodle_exception('invalidmanagerid', 'block_course_managers');
 }

@@ -36,3 +36,4 @@ $string['searchbox'] = 'nulla, usa box di ricerca';
 $string['pages'] = 'numeri di pagina';
 $string['letters'] = 'lettere alfabetiche';
 $string['privacy:metadata'] = 'Il blocco Course Managers mostra solo i dati dei gestiori dei corsi e non salva alcun dato.';
+$string['invalidmanagerid'] = 'Identificativo gestore corsi non valido';
