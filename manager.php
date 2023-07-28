@@ -39,6 +39,8 @@ if (! $course = $DB->get_record('course', array('id' => SITEID)) ) {
     throw new moodle_exception('invalidcourseid', 'error');
 }
 
+require_login();
+
 if ($managercourses = course_managers_get_courses($user->id)) {
     $displaylist = null;
     if (class_exists('core_course_category')) {
