@@ -2,39 +2,9 @@
    white-space: nowrap;
 }
 
-.block-course_managers-letter,
-.block-course_managers-page {
-   margin: 0;
-}
-
-.block-course_managers-letter li,
-.block-course_managers-page li {
-   list-style: none;
-   margin-bottom: 0.2em;
-}
-
-#block-course_managers-search,
-#block-course_managers-pages,
-#block-course_managers-letters {
+#block-course_managers-search {
    margin-bottom: 5px;
    text-align: center;
-}
-
-#block-course_managers-search {
-   display: none;
-}
-
-.block-course_managers-page-letter,
-.block-course_managers-page-number,
-.block-course_managers-page-arrow {
-   padding: 1px;
-   border: thin solid black;
-   width: 1.5em;
-   display: inline-block;
-}
-
-.block-course_managers-page-letter {
-   width: 1em;
 }
 
 #page-blocks-course_managers-manager .notopened {

@@ -38,46 +38,18 @@ class block_course_managers_edit_form extends block_edit_form {
         $mform->addElement('text', 'config_title', get_string('configtitle', 'block_course_managers'));
         $mform->setType('config_title', PARAM_MULTILANG);
 
-        $choices = array(0 => get_string('all'));
-        $choices[1] = '1';
-        $choices[2] = '2';
-        $choices[3] = '3';
-        $choices[4] = '4';
-        $choices[5] = '5';
-        $choices[6] = '6';
-        $choices[7] = '7';
-        $choices[8] = '8';
-        $choices[9] = '9';
-        $choices[10] = '10';
-        $choices[15] = '15';
-        $choices[20] = '20';
-        $choices[30] = '30';
-        $choices[50] = '50';
-        $mform->addElement('select', 'config_itemperpage', get_string('configitemperpage', 'block_course_managers'), $choices);
-        if (isset($this->block->config->itemperpage)) {
-            $mform->setDefault('config_itemperpage', $this->block->config->itemperpage);
-        } else {
-            $mform->setDefault('config_itemperpage', '10');
-        }
-
         $choices = array();
-        $choices['search'] = get_string('searchbox', 'block_course_managers');
-        $choices['pages'] = get_string('pages', 'block_course_managers');
-        $choices['letters'] = get_string('letters', 'block_course_managers');
-        $mform->addElement('select', 'config_multipage', get_string('configmultipage', 'block_course_managers'), $choices);
-        if (isset($this->block->config->multipage)) {
-            $mform->setDefault('config_multipage', $this->block->config->multipage);
+        $choices['accesstime'] = get_string('accesstime', 'block_course_managers');
+        $choices['alphabetically'] = get_string('alphabetically', 'block_course_managers');
+        $mform->addElement('select', 'config_orderby', get_string('configorderby', 'block_course_managers'), $choices);
+        if (isset($this->block->config->orderby)) {
+            $mform->setDefault('config_orderby', $this->block->config->orderby);
         } else {
-            $mform->setDefault('config_multipage', 'search');
+            $mform->setDefault('config_orderby', 'alphabetically');
+            if (isset($this->block->config->orderaccess) && !empty($this->block->config->orderaccess)) {
+                $mform->setDefault('config_orderby', 'accesstime');
+            }
         }
-
-        $mform->addElement('checkbox', 'config_orderbyaccess', get_string('configorderbyaccess', 'block_course_managers'));
-        if (isset($this->block->config->orderbyaccess)) {
-            $mform->setDefault('config_orderbyaccess', $this->block->config->orderbyaccess);
-        } else {
-            $mform->setDefault('config_orderbyaccess', false);
-        }
-        $mform->disabledIf('config_orderbyaccess', 'config_multipage', 'eq', 'letters');
     }
 
     public function set_data($defaults) {
