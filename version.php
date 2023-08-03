@@ -25,5 +25,5 @@
 defined('MOODLE_INTERNAL') || die;
 
 $plugin->version   = 2022080200;
-$plugin->requires  = 2020071700;        // Requires this Moodle version.
+$plugin->requires  = 2020061500;        // Requires this Moodle version.
 $plugin->component = 'block_course_managers'; // Full name of the plugin (used for diagnostics).
