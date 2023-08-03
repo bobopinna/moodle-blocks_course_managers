@@ -2,6 +2,16 @@
    white-space: nowrap;
 }
 
+#block-course_managers-list {
+   text-align: center;
+}
+
+#block-course_managers-list ul {
+   margin-left: 0;
+   list-style: none;
+   text-align: left;
+}
+
 #block-course_managers-search {
    margin-bottom: 5px;
    text-align: center;

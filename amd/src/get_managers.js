@@ -21,55 +21,72 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import Ajax from 'core/ajax';
-import {render as renderTemplate} from 'core/templates';
+import {call as fetchMany} from 'core/ajax';
+import {exception as displayException} from 'core/notification';
+import Templates from 'core/templates';
 
 const Selectors = {
-    filter: "block-course_managers-search-filter",
-    list: "block-course_managers-list",
+    filter: "#block-course_managers-search-filter",
+    list: "#block-course_managers-list",
 };
 
-export const init = (blockId) => {
-    document.addEventListener('DOMContentLoaded', () => {
-        const filter = document.querySelector(Selectors.filter);
+export const init = async(blockId) => {
+    Templates.appendNodeContents(Selectors.list, '<i class="fa-solid fa-circle-notch fa-spin fa-xl"></i>', '');
 
-        filter.addEventListener("keyup", () => {
-            getManagers(Selectors.list, filter.value, blockId);
+    const managers = await getManagers(blockId);
+
+    if (managers !== null) {
+        displayManagers(managers, Selectors.list, null);
+
+        document.addEventListener("keyup", e => {
+            if (e.target.closest(Selectors.filter)) {
+                displayManagers(managers, Selectors.list, Selectors.filter);
+            }
         });
-
-        getManagers(Selectors.list, null, blockId);
-    });
+    }
 };
 
 /**
- * Load the list of managers matching the query and render the list for them.
+ * Load the list of managers.
  *
- * @param {String} selector The list selector.
- * @param {String} query The query string.
- * @param {Integer} blockId Current block insance id.
+ * @param {Number} blockId Current block instance id.
  */
-export async function getManagers(selector, query, blockId) {
-
-    const request = {
+export const getManagers = (blockId) => {
+    const managers = fetchMany([{
         methodname: 'block_course_managers_get_managers',
-        args: {
-            query: query,
-            blockid: blockId,
-        }
-    };
+        args: {blockid: blockId},
+    }]);
+    return managers[0];
+};
 
-    try {
-        const response = await Ajax.call([request])[0];
-
-        let managers = [];
-        response.list.forEach(manager => {
-            managers.push(renderTemplate('block_course_managers/manager_element', manager));
-        });
-        managers = await Promise.all(managers);
-
-        document.querySelector(selector).innerHTML = managers.join("\n");
-
-    } catch (e) {
-        window.console.log('Communication error retrieving courses managers');
+/**
+ * Display the list of filtered managers.
+ *
+ * @param {Array} managers The list of site managers.
+ * @param {String} listSelector The HTML element selector for output the list.
+ * @param {String} filterSelector The HTML element selector to get filter value.
+ **/
+const displayManagers = (managers, listSelector, filterSelector) => {
+    let query = null;
+    if (filterSelector !== null) {
+        query = document.querySelector(filterSelector).value;
     }
-}
+
+    if (managers.length > 0) {
+        let counter = 0;
+        managers.forEach(manager => {
+            if (counter == 0) {
+                document.querySelectorAll(listSelector + " *").forEach(n => n.remove());
+                Templates.appendNodeContents(listSelector, '<ul></ul>', '');
+            }
+            if ((query === null) || manager.fullname.includes(query)) {
+                Templates.renderForPromise('block_course_managers/manager_element', manager)
+                .then(({html, js}) => {
+                    Templates.appendNodeContents(listSelector + ' ul', html, js);
+                    counter++;
+                })
+                .catch((error) => displayException(error));
+            }
+        });
+    }
+};

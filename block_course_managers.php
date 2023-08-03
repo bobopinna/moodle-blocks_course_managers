@@ -82,12 +82,12 @@ class block_course_managers extends block_base {
 
             $attributes = array();
             $attributes['id'] = 'block-course_managers-list';
-            $this->content->text .= html_writer::tag('ul', '', $attributes);
+            $this->content->text .= html_writer::tag('div', '', $attributes);
         } else {
             $this->content->text = get_string('nocoursecontact', 'block_course_managers');
         }
 
-        $arguments = array('blockid' => $this->instance->id);
+        $arguments = array('blockid' => (int) $this->instance->id);
         $this->page->requires->js_call_amd('block_course_managers/get_managers', 'init', $arguments);
 
         return $this->content;

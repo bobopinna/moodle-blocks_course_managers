@@ -15,15 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Display useful information about courses teacher
+ * External service definitions for the course_managers block.
  *
- * @package   block_course_managers
- * @copyright 2014 Roberto Pinna
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     block_course_managers
+ * @copyright   2023 Roberto Pinna
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022080200;
-$plugin->requires  = 2020071700;        // Requires this Moodle version.
-$plugin->component = 'block_course_managers'; // Full name of the plugin (used for diagnostics).
+$functions = [
+    'block_course_managers_get_managers' => [
+        'classname'     => 'block_course_managers\external\get_managers',
+        'methodname'    => 'execute',
+        'description'   => 'Gets list of courses managers',
+        'type'          => 'read',
+        'ajax'          => true,
+    ],
+];

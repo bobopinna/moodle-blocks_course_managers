@@ -40,25 +40,22 @@ class get_managers extends external_api {
      */
     public static function execute_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'query' => new external_value(PARAM_RAW, 'The search query', VALUE_REQUIRED),
-            'blockid' => new external_value(PARAM_INT, 'The block id', VALUE_REQUIRED),
+            'blockid' => new external_value(PARAM_INT, 'The block instance id', VALUE_REQUIRED),
         ]);
     }
 
     /**
      * Finds users with the identity matching the given query.
      *
-     * @param string $query The search request.
+     * @param int $blockid The block instance id.
      * @return array
      */
-    public static function execute(string $query, int $blockid): array {
+    public static function execute(int $blockid): array {
         global $DB, $CFG;
 
         $params = external_api::validate_parameters(self::execute_parameters(), [
-            'query' => $query,
             'blockid' => $blockid,
         ]);
-        $query = clean_param($params['query'], PARAM_TEXT);
 
         // Validate context.
         $context = \context_system::instance();
@@ -85,16 +82,15 @@ class get_managers extends external_api {
                       AND ctx.contextlevel = '" . CONTEXT_COURSE . "'
                       AND c.id = ctx.instanceid
                       AND c.visible = 1
-                      AND (u.firstname LIKE '%{$query}% OR u.lastname LIKE '%{$query}%')
                     GROUP BY u.id
                     ORDER BY $order";
 
             if ($users = $DB->get_records_sql($sql)) {
                 foreach ($users as $user) {
-                    $manager = new stdClass();
+                    $manager = new \stdClass();
                     $manager->fullname = fullname($user);
                     $query = array('id' => $user->id, 'b' => $blockid);
-                    $manager->url = new moodle_url($CFG->wwwroot . '/blocks/course_managers/manager.php', $query);
+                    $manager->url = (string) new \moodle_url($CFG->wwwroot . '/blocks/course_managers/manager.php', $query);
 
                     $managers[] = $manager;
                 }
@@ -109,14 +105,14 @@ class get_managers extends external_api {
      *
      * @return external_description
      */
-    public static function execute_returns(): external_description {
-        return new external_multiple_structure([
+    public static function execute_returns() : external_description {
+        return new external_multiple_structure(
             new external_single_structure([
                 // The output of the {@see fullname()} can contain formatting HTML such as <ruby> tags.
                 // So we need PARAM_RAW here and the caller is supposed to render it appropriately.
                 'fullname' => new external_value(PARAM_RAW, 'The fullname of the user'),
                 'url' => new external_value(PARAM_URL, 'Manager page url.'),
             ])
-        ]);
+        );
     }
 }
