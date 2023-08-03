@@ -25,15 +25,12 @@
 $string['pluginname'] = 'Gestori Corsi';
 $string['coursemanagers'] = 'Gestori Corsi';
 $string['configtitle'] = 'Titolo';
-$string['configitemperpage'] = 'Gestori per pagina';
-$string['configmultipage'] = 'Organizza pagine per ';
-$string['configorderbyaccess'] = 'Ordina i gestori per data di ultimo accesso';
+$string['configorderby'] = 'Ordina gestori';
+$string['alphabetically'] = 'Alfabeticamente';
+$string['byaccesstime'] = 'Per ultimo accesso';
 
 $string['youcantsee'] = 'Visualizzazione elechi corsi personali disabiltato';
 $string['nocoursecontact'] = 'Non ci sono ruoli indicati come gestori dei corsi';
 $string['typetofilter'] = 'Digita per cercare';
-$string['searchbox'] = 'nulla, usa box di ricerca';
-$string['pages'] = 'numeri di pagina';
-$string['letters'] = 'lettere alfabetiche';
 $string['privacy:metadata'] = 'Il blocco Course Managers mostra solo i dati dei gestiori dei corsi e non salva alcun dato.';
 $string['invalidmanagerid'] = 'Identificativo gestore corsi non valido';

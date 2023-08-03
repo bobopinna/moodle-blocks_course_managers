@@ -39,7 +39,7 @@ class block_course_managers_edit_form extends block_edit_form {
         $mform->setType('config_title', PARAM_MULTILANG);
 
         $choices = array();
-        $choices['accesstime'] = get_string('accesstime', 'block_course_managers');
+        $choices['accesstime'] = get_string('byaccesstime', 'block_course_managers');
         $choices['alphabetically'] = get_string('alphabetically', 'block_course_managers');
         $mform->addElement('select', 'config_orderby', get_string('configorderby', 'block_course_managers'), $choices);
         if (isset($this->block->config->orderby)) {

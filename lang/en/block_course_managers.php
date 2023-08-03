@@ -27,15 +27,12 @@ $string['course_managers:addinstance'] = 'Add a Course Managers block';
 
 $string['coursemanagers'] = 'Course Managers';
 $string['configtitle'] = 'Title';
-$string['configitemperpage'] = 'Managers per page';
-$string['configmultipage'] = 'Organize pages by';
-$string['configorderbyaccess'] = 'Order managers by last access time';
+$string['configorderby'] = 'Order managers';
+$string['alphabetically'] = 'Alphabetically';
+$string['byaccesstime'] = 'By access time';
 
 $string['nocoursecontact'] = 'No course contacts role defined';
 $string['youcantsee'] = 'Personal course listing disabled';
 $string['typetofilter'] = 'Type to search';
-$string['searchbox'] = 'none, use a searchbox';
-$string['pages'] = 'page numbers';
-$string['letters'] = 'alphabetic letters';
 $string['privacy:metadata'] = 'The Course Managers block only shows data about manager\'s courses and does not store any data itself.';
 $string['invalidmanagerid'] = 'Invalid manager ID';
