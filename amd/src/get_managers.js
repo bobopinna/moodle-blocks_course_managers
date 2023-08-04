@@ -79,7 +79,7 @@ const displayManagers = (managers, listSelector, filterSelector) => {
                 document.querySelectorAll(listSelector + " *").forEach(n => n.remove());
                 Templates.appendNodeContents(listSelector, '<ul></ul>', '');
             }
-            if ((query === null) || manager.fullname.includes(query)) {
+            if ((query === null) || manager.fullname.toLowerCase().includes(query.toLowerCase())) {
                 Templates.renderForPromise('block_course_managers/manager_element', manager)
                 .then(({html, js}) => {
                     Templates.appendNodeContents(listSelector + ' ul', html, js);
