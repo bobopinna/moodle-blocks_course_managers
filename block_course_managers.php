@@ -82,6 +82,9 @@ class block_course_managers extends block_base {
 
             $attributes = array();
             $attributes['id'] = 'block-course_managers-list';
+            if (!isset($this->config->itemperpage)) {
+                $this->config->itemperpage = 10;
+            }
             if ($this->config->itemperpage > 0) { 
                 $maxheight = 1.5 * $this->config->itemperpage;
                 $attributes['style'] = 'max-height:' . $maxheight . 'em;';

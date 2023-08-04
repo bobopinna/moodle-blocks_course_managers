@@ -15,7 +15,7 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template block_course_managers/form_manager_listitem
+    @template block_course_managers/manager_element
 
     Moodle template for the list of managers element.
 
@@ -32,8 +32,7 @@
     Example context (json):
     {
         "fullname": "Admin User",
-        "url": "https://moodle.org/blocks/course_managers/manager.php?id=1&amp;b=100"
-",
+        "url": "https://moodle.org/blocks/course_managers/manager.php?id=1&amp;b=100",
     }
 }}
 <li><a href="{{url}}">{{#pix}}i/user{{/pix}} <span data-field="fullname">{{fullname}}</span></a></li>

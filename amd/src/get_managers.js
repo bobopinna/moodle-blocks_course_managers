@@ -24,18 +24,22 @@
 import {call as fetchMany} from 'core/ajax';
 import {exception as displayException} from 'core/notification';
 import Templates from 'core/templates';
+import {get_string as getString} from 'core/str';
 
 const Selectors = {
     filter: "#block-course_managers-search-filter",
     list: "#block-course_managers-list",
 };
 
+var nothingString = null;
+
 export const init = async(blockId) => {
     Templates.appendNodeContents(Selectors.list, '<i class="fa-solid fa-circle-notch fa-spin fa-xl"></i>', '');
 
     const managers = await getManagers(blockId);
+    nothingString = await getString('nothingtodisplay', 'block_course_managers');
 
-    if (managers !== null) {
+    if (managers.length > 0) {
         displayManagers(managers, Selectors.list, null);
 
         document.addEventListener("keyup", e => {
@@ -43,6 +47,9 @@ export const init = async(blockId) => {
                 displayManagers(managers, Selectors.list, Selectors.filter);
             }
         });
+    } else {
+        document.querySelectorAll(Selectors.list + " *").forEach(n => n.remove());
+        Templates.appendNodeContents(Selectors.list, '<i>' + nothingString + '</i>', '');
     }
 };
 
@@ -80,13 +87,16 @@ const displayManagers = (managers, listSelector, filterSelector) => {
                 Templates.appendNodeContents(listSelector, '<ul></ul>', '');
             }
             if ((query === null) || manager.fullname.toLowerCase().includes(query.toLowerCase())) {
+                counter++;
                 Templates.renderForPromise('block_course_managers/manager_element', manager)
                 .then(({html, js}) => {
                     Templates.appendNodeContents(listSelector + ' ul', html, js);
-                    counter++;
                 })
                 .catch((error) => displayException(error));
             }
         });
+        if (counter == 0) {
+            Templates.appendNodeContents(listSelector, '<i>' + nothingString + '</i>', '');
+        }
     }
 };

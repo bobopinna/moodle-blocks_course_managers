@@ -33,5 +33,6 @@ $string['configitemperpage'] = 'Numero di gestori mostrati';
 $string['youcantsee'] = 'Visualizzazione elechi corsi personali disabiltato';
 $string['nocoursecontact'] = 'Non ci sono ruoli indicati come gestori dei corsi';
 $string['typetofilter'] = 'Digita per cercare';
+$string['nothingtodisplay'] = 'Nulla da mostrare';
 $string['privacy:metadata'] = 'Il blocco Course Managers mostra solo i dati dei gestiori dei corsi e non salva alcun dato.';
 $string['invalidmanagerid'] = 'Identificativo gestore corsi non valido';
