@@ -55,8 +55,7 @@ export const getManagers = (blockId) => {
     const managers = fetchMany([{
         methodname: 'block_course_managers_get_managers',
         args: {blockid: blockId},
-        false
-    }]);
+    }], true, false);
     return managers[0];
 };
 

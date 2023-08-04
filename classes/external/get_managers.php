@@ -57,11 +57,6 @@ class get_managers extends external_api {
             'blockid' => $blockid,
         ]);
 
-        // Validate context.
-        $context = \context_system::instance();
-        self::validate_context($context);
-        require_capability('moodle/site:viewfullnames', $context);
-
         $managers = array();
 
         if (isset($CFG->coursecontact) && !empty($CFG->coursecontact)) {
