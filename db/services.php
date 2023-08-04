@@ -31,5 +31,7 @@ $functions = [
         'description'   => 'Gets list of courses managers',
         'type'          => 'read',
         'ajax'          => true,
+        'loginrequired' => false,
+        'capabilities'  => 'moodle/site:viewfullnames',
     ],
 ];
