@@ -50,6 +50,28 @@ class block_course_managers_edit_form extends block_edit_form {
                 $mform->setDefault('config_orderby', 'accesstime');
             }
         }
+
+        $choices = array(0 => get_string('all'));
+        $choices[1] = '1';
+        $choices[2] = '2';
+        $choices[3] = '3';
+        $choices[4] = '4';
+        $choices[5] = '5';
+        $choices[6] = '6';
+        $choices[7] = '7';
+        $choices[8] = '8';
+        $choices[9] = '9';
+        $choices[10] = '10';
+        $choices[15] = '15';
+        $choices[20] = '20';
+        $choices[30] = '30';
+        $choices[50] = '50';
+        $mform->addElement('select', 'config_itemperpage', get_string('configitemperpage', 'block_course_managers'), $choices);
+        if (isset($this->block->config->itemperpage)) {
+            $mform->setDefault('config_itemperpage', $this->block->config->itemperpage);
+        } else {
+            $mform->setDefault('config_itemperpage', '10');
+        }
     }
 
     public function set_data($defaults) {

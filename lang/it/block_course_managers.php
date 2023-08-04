@@ -28,6 +28,7 @@ $string['configtitle'] = 'Titolo';
 $string['configorderby'] = 'Ordina gestori';
 $string['alphabetically'] = 'Alfabeticamente';
 $string['byaccesstime'] = 'Per ultimo accesso';
+$string['configitemperpage'] = 'Numero di gestori mostrati';
 
 $string['youcantsee'] = 'Visualizzazione elechi corsi personali disabiltato';
 $string['nocoursecontact'] = 'Non ci sono ruoli indicati come gestori dei corsi';

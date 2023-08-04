@@ -17,7 +17,7 @@
  * Display useful information about courses teacher
  *
  * @package block_course_managers
- * @copyright Roberto Pinna (roberto.pinna@uniupo.it)
+ * @copyright 2015 Roberto Pinna (roberto.pinna@uniupo.it)
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -26,7 +26,7 @@
  * Extend base block to provide the list of courses teachers
  *
  * @package block_course_managers
- * @copyright Roberto Pinna (roberto.pinna@uniupo.it)
+ * @copyright 2015 Roberto Pinna (roberto.pinna@uniupo.it)
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_course_managers extends block_base {
@@ -82,6 +82,10 @@ class block_course_managers extends block_base {
 
             $attributes = array();
             $attributes['id'] = 'block-course_managers-list';
+            if ($this->config->itemperpage > 0) { 
+                $maxheight = 1.5 * $this->config->itemperpage;
+                $attributes['style'] = 'max-height:' . $maxheight . 'em;';
+            }
             $this->content->text .= html_writer::tag('div', '', $attributes);
         } else {
             $this->content->text = get_string('nocoursecontact', 'block_course_managers');

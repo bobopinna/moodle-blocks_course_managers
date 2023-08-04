@@ -4,6 +4,7 @@
 
 #block-course_managers-list {
    text-align: center;
+   overflow-y: scroll;
 }
 
 #block-course_managers-list ul {

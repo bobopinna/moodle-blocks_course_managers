@@ -30,6 +30,7 @@ $string['configtitle'] = 'Title';
 $string['configorderby'] = 'Order managers';
 $string['alphabetically'] = 'Alphabetically';
 $string['byaccesstime'] = 'By access time';
+$string['configitemperpage'] = 'Number of managers shown';
 
 $string['nocoursecontact'] = 'No course contacts role defined';
 $string['youcantsee'] = 'Personal course listing disabled';
