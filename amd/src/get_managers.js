@@ -33,10 +33,10 @@ const Selectors = {
 
 var nothingString = null;
 
-export const init = async(blockId) => {
+export const init = async(blockId, orderBy) => {
     Templates.appendNodeContents(Selectors.list, '<i class="fa-solid fa-circle-notch fa-spin fa-xl"></i>', '');
 
-    const managers = await getManagers(blockId);
+    const managers = await getManagers(blockId, orderBy);
     nothingString = await getString('nothingtodisplay', 'block_course_managers');
 
     if (managers.length > 0) {
@@ -57,11 +57,12 @@ export const init = async(blockId) => {
  * Load the list of managers.
  *
  * @param {Number} blockId Current block instance id.
+ * @param {String} orderBy Course managers list order.
  */
-export const getManagers = (blockId) => {
+export const getManagers = (blockId, orderBy) => {
     const managers = fetchMany([{
         methodname: 'block_course_managers_get_managers',
-        args: {blockid: blockId},
+        args: {blockid: blockId, orderby: orderBy},
     }], true, false);
     return managers[0];
 };

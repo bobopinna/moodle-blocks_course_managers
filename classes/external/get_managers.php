@@ -41,6 +41,7 @@ class get_managers extends external_api {
     public static function execute_parameters(): external_function_parameters {
         return new external_function_parameters([
             'blockid' => new external_value(PARAM_INT, 'The block instance id', VALUE_REQUIRED),
+            'orderby' => new external_value(PARAM_ALPHA, 'Course managers list order', VALUE_REQUIRED),
         ]);
     }
 
@@ -50,11 +51,12 @@ class get_managers extends external_api {
      * @param int $blockid The block instance id.
      * @return array
      */
-    public static function execute(int $blockid): array {
+    public static function execute(int $blockid, string $orderby): array {
         global $DB, $CFG;
 
         $params = external_api::validate_parameters(self::execute_parameters(), [
             'blockid' => $blockid,
+            'orderby' => $orderby,
         ]);
 
         $managers = array();
@@ -62,7 +64,6 @@ class get_managers extends external_api {
         if (isset($CFG->coursecontact) && !empty($CFG->coursecontact)) {
 
             $order = 'u.lastname ASC, u.firstname ASC';
-            $orderby = get_config('orderby', 'block_course_managers');
             if (!empty($orderby) && ($orderby == 'accesstime')) {
                 $order = 'u.lastaccess DESC, '. $order;
             }

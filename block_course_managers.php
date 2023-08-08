@@ -94,7 +94,7 @@ class block_course_managers extends block_base {
             $this->content->text = get_string('nocoursecontact', 'block_course_managers');
         }
 
-        $arguments = array('blockid' => (int) $this->instance->id);
+        $arguments = array('blockid' => (int) $this->instance->id, 'orderby' => $this->config->orderby);
         $this->page->requires->js_call_amd('block_course_managers/get_managers', 'init', $arguments);
 
         return $this->content;
