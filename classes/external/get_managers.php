@@ -66,7 +66,7 @@ class get_managers extends external_api {
             if (!empty($orderby) && ($orderby == 'accesstime')) {
                 $order = 'u.lastaccess DESC, '. $order;
             }
-            $sql = "SELECT u.id, u.firstname, u.lastname
+            $sql = "SELECT u.id, u.firstname, u.lastname, u.firstnamephonetic, u.lastnamephonetic, u.middlename, u.alternatename
                     FROM {$CFG->prefix}role_assignments ra,
                          {$CFG->prefix}course c,
                          {$CFG->prefix}context ctx,
