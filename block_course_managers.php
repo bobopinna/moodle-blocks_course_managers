@@ -82,6 +82,10 @@ class block_course_managers extends block_base {
 
             $attributes = array();
             $attributes['id'] = 'block-course_managers-list';
+
+            if (!isset($this->config)) {
+                $this->config = new stdClass();
+            }
             if (!isset($this->config->itemperpage)) {
                 $this->config->itemperpage = 10;
             }
