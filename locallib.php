@@ -25,16 +25,23 @@
 function course_managers_get_courses($userid) {
     global $CFG, $DB;
 
+    $sitecontext = context_system::instance();
+
+    $visibilityfilter = 'AND course.visible = 1';
+    if (has_capability('moodle/course:viewhiddencourses', $sitecontext)) {
+        $visibilityfilter = '';
+    }
+
     $sql = "SELECT course.*, categories.sortorder
               FROM {$CFG->prefix}course course,
                    {$CFG->prefix}course_categories categories,
                    {$CFG->prefix}context context,
                    {$CFG->prefix}role_assignments ra
              WHERE ra.roleid IN ({$CFG->coursecontact})
+               {$visibilityfilter}
                AND context.contextlevel = '".CONTEXT_COURSE."'
                AND context.id = ra.contextid
                AND context.instanceid = course.id
-               AND course.visible = 1
                AND categories.id = course.category
                AND ra.userid = {$userid}
              GROUP BY course.id
