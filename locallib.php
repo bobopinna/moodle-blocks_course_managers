@@ -71,7 +71,7 @@ function course_managers_get_reservations($userid, $deltatime=-1) {
 
 // Print Reservations.
 function course_managers_print_reservations($userid, $deltatime) {
-    global $CFG, $OUTPUT;
+    global $CFG, $DB, $OUTPUT;
 
     $reservations = course_managers_get_reservations($userid, $deltatime);
 
