@@ -15,13 +15,16 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace block_course_managers\external;
+defined('MOODLE_INTERNAL') || die();
 
-use core_external\external_api;
-use core_external\external_description;
-use core_external\external_function_parameters;
-use core_external\external_multiple_structure;
-use core_external\external_single_structure;
-use core_external\external_value;
+require_once("$CFG->libdir/externallib.php");
+
+use external_api;
+use external_description;
+use external_function_parameters;
+use external_multiple_structure;
+use external_single_structure;
+use external_value;
 
 /**
  * Provides the block_course_managers_get_managers external function.
