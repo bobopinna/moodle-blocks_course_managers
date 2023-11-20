@@ -230,7 +230,7 @@ if ($managercourses = course_managers_get_courses($user->id)) {
 
             echo $OUTPUT->box_start('courseboxes');
             echo $OUTPUT->heading(get_string('courses'));
-            foreach ($managercourses as $managercourse) {
+            foreach ($managercourses as $key => $managercourse) {
                 if (!isset($managercourse->summary)) {
                     $managercourse->summary = '';
                 }
@@ -241,9 +241,24 @@ if ($managercourses = course_managers_get_courses($user->id)) {
                     $managercourse->summary .= $displaylist[$managercourse->category];
                     $managercourse->summary .= '</a></p>';
                 }
-                echo $renderer->course_info_box($managercourse);
+                if ($managercourse->visible == 1) {
+                    echo $renderer->course_info_box($managercourse);
+                    unset($managercourses[$key]);
+                }
             }
             echo $OUTPUT->box_end();
+
+            $sitecontext = context_system::instance();
+            if ((count($managercourses) > 0) && has_capability('moodle/course:viewhiddencourses', $sitecontext)) {
+                echo $OUTPUT->box_start('courseboxes');
+                echo $OUTPUT->heading(get_string('hiddencourses', 'block_course_managers'));
+                foreach ($managercourses as $managercourse) {
+                    if ($managercourse->visible == 0) {
+                        echo $renderer->course_info_box($managercourse);
+                    }
+                }
+                echo $OUTPUT->box_end();
+            }
         } else {
             echo $OUTPUT->heading(get_string('nocourses'));
         }

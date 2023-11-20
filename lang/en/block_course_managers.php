@@ -38,3 +38,4 @@ $string['typetofilter'] = 'Type to search';
 $string['nothingtodisplay'] = 'Nothing to display';
 $string['privacy:metadata'] = 'The Course Managers block only shows data about manager\'s courses and does not store any data itself.';
 $string['invalidmanagerid'] = 'Invalid manager ID';
+$string['hiddencourses'] = 'Hidden courses';
